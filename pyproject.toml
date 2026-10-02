@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "signedcrawl"
+version = "0.1.0"
+description = "Parameterized helpers for reverse-engineering signed, encrypted data APIs"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["reverse-engineering", "signature", "aes", "gzip", "websocket", "scraping"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = ["pycryptodome"]
+
+[project.optional-dependencies]
+# Browser-driven paths (e.g. hooking a live WebSocket through CDP) are
+# optional; the core package needs only pycryptodome.
+browser = ["websockets"]
+
+[project.scripts]
+signedcrawl = "signedcrawl.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["signedcrawl*"]
